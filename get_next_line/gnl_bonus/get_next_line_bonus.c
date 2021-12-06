@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:11:11 by sojung            #+#    #+#             */
-/*   Updated: 2021/12/06 16:42:32 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/06 17:20:20 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(char *s)
 {
@@ -60,31 +60,31 @@ char	*ft_joinleft(char **left, int fd)
 
 char	*get_next_line(int fd)
 {
-	char		*buf;
-	static char	*left;
+	char		*buf[1024];
+	static char	*left[1024];
 	int			index_r;
 
-	if (left != NULL)
+	if (left[fd] != NULL)
 	{
-		if (ft_chr_newline(left) == 1)
-			return (ft_clean(&left, left));
-		return (ft_joinleft(&left, fd));
+		if (ft_chr_newline(left[fd]) == 1)
+			return (ft_clean(&left[fd], left[fd]));
+		return (ft_joinleft(&left[fd], fd));
 	}
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
+	buf[fd] = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf[fd])
 		return (NULL);
-	index_r = read(fd, buf, BUFFER_SIZE);
+	index_r = read(fd, buf[fd], BUFFER_SIZE);
 	if (index_r == -1 || index_r == 0)
 	{
-		free(left);
-		free(buf);
+		free(left[fd]);
+		free(buf[fd]);
 		return (NULL);
 	}
-	buf[index_r] = '\0';
-	if (ft_chr_newline(buf) == 1)
-		return (ft_clean(&left, buf));
+	buf[fd][index_r] = '\0';
+	if (ft_chr_newline(buf[fd]) == 1)
+		return (ft_clean(&left[fd], buf[fd]));
 	else
-		return (buf);
+		return (buf[fd]);
 }
 // leak ok (frees the previous left or buf in ft_clean)
 // else, return value freed in main

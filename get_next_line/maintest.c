@@ -6,7 +6,7 @@
 /*   By: rsung <rsung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:50:13 by rsung             #+#    #+#             */
-/*   Updated: 2021/12/06 16:30:00 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/07 14:21:09 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int	main(void)
 	int		fd;
 	char	*res;
 
-	fd = open("test.txt", O_RDONLY);
-	while ((res = get_next_line(0)) != NULL)
+	fd = open("41_with_nl", O_RDONLY);
+	while ((res = get_next_line(fd)) != NULL)
 	{
 		printf("%s", res);
+		printf("\n***cut***\n");
 		free(res);
 	}
 	close(fd);

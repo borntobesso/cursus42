@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:11:11 by sojung            #+#    #+#             */
-/*   Updated: 2021/12/07 17:36:49 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/07 18:10:04 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_return(char **left, char **buf, int fd)
 	if (ft_chr_newline(*buf) == 1)
 		return (ft_clean(left, *buf));
 	else
-		return (ft_joinleft(buf, fd)); 
+		return (ft_joinleft(buf, fd));
 }
 
 char	*get_next_line(int fd)

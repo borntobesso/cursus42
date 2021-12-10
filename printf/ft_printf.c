@@ -6,32 +6,73 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 17:08:33 by sojung            #+#    #+#             */
-/*   Updated: 2021/12/09 18:09:56 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:56:46 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_detect_format(char *s)
+char	ft_detect_format(char c)
 {
-	char	formats[10]
+	char	*formats;
+	int		i;
 
 	formats = "cspdiuxX%";
-	if (
+	i = 0;
+	while (i < 9)
+	{
+		if (c == formats[i])
+			return (c);
+		i++;
+	}
+	return ('n');
+}
+
+void	ft_print_arg(char type, int *i, int *count, va_list ap)
+{
+	if (type == 'c')
+		(*count) += ft_putchar((char)va_arg(ap, int));
+	else if (type == 's')
+		(*count) += ft_putstr(va_arg(ap, char *));
+	else if (type == 'p')
+		(*count) += ft_putptr((unsigned long)va_arg(ap, void *), 0);
+	else if (type == 'd' || type == 'i')
+		(*count) += ft_putnbr(va_arg(ap, int));
+	else if (type == 'u')
+		(*count) += ft_putnbr(va_arg(ap, unsigned int));
+	else if (type == 'x')
+		(*count) += ft_puthex(va_arg(ap, unsigned int), 0);
+	else if (type == 'X')
+		(*count) += ft_puthex(va_arg(ap, unsigned int), 1);
+	else
+		(*count) += ft_putchar('%');
+	(*i)++;
 }
 
 int	ft_printf(const char *s, ...)
 {
-	va_list ap;
-	int	i;
-	int	type;
+	va_list	ap;
+	int		i;
+	char	type;
+	int		count;
 
 	va_start(ap, s);
+	count = 0;
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
-		if (s[i] == '%')
-			type = ft_detect_format(&s[i + 1]);
-
+		if (s[i] == '%' && s[i + 1])
+		{
+			type = ft_detect_format(s[i + 1]);
+			if (type != 'n')
+				ft_print_arg(type, &i, &count, ap);
+			else
+				count += ft_putchar(s[i]);
+		}
+		else
+			count += ft_putchar(s[i]);
+		i++;
 	}
+	va_end(ap);
+	return (count);
 }

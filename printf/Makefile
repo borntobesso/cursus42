@@ -6,17 +6,15 @@
 #    By: sojung <sojung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/07 18:36:13 by sojung            #+#    #+#              #
-#    Updated: 2021/12/07 19:01:31 by sojung           ###   ########.fr        #
+#    Updated: 2021/12/10 16:46:09 by sojung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = 
+SRCS = ft_printf.c ft_printf_utils.c
 
 OBJS = $(SRCS:.c=.o)
-
-LIBFT = libft.a
 
 HEADER = ./
 
@@ -26,13 +24,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(LIBFT)
+$(NAME) : $(OBJS)
 	ar rc $@ $^
 
 %.o : %.c libftprintf.h
 	$(CC) $(CFLAGS) -o $@ -I $(HEADER) -c $<
-
-$(LIBFT) : 
 
 clean :
 	rm -f $(OBJS)

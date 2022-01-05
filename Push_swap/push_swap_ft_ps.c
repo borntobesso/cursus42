@@ -6,13 +6,13 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:38:31 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 17:38:46 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/05 19:30:21 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(s_type *stack_info, int *stack_a)
+void	sa(t_info *stack_info, int *stack_a)
 {
 	int	tmp;
 	
@@ -24,7 +24,7 @@ void	sa(s_type *stack_info, int *stack_a)
 	}
 }
 
-void	sb(s_type *stack_info, int *stack_b)
+void	sb(t_info *stack_info, int *stack_b)
 {
 	int	tmp;
 
@@ -36,13 +36,13 @@ void	sb(s_type *stack_info, int *stack_b)
 	}
 }
 
-void	ss(s_type *stack_info, int *stack_a, int *stack_b)
+void	ss(t_info *stack_info, int *stack_a, int *stack_b)
 {
 	sa(stack_info, stack_a);
 	sb(stack_info, stack_b);
 }
 
-void	pa(s_type *stack_info, int *stack_a, int *stack_b)
+void	pa(t_info *stack_info, int *stack_a, int *stack_b)
 {
 	int	tmp;
 
@@ -56,7 +56,7 @@ void	pa(s_type *stack_info, int *stack_a, int *stack_b)
 	}
 }
 
-void	pb(s_type *stack_info, int *stack_a, int *stack_b)
+void	pb(t_info *stack_info, int *stack_a, int *stack_b)
 {
 	int	tmp;
 

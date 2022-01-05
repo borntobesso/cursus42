@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:32:53 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 16:33:51 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/05 19:33:22 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_isdigit(char c)
 	else
 		return (0);
 }
+
 int	check_double_arg(int pos, char **argv)
 {
 	int	i;
@@ -71,7 +72,7 @@ int	check_valid_args(int argc, char **argv) // double, digit, int_max/int_min, N
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
-				return (0)
+				return (0);
 			j++;
 		}
 		if (ft_atoi(argv[i]) > INT_MAX || ft_atoi(argv[i]) < INT_MIN)

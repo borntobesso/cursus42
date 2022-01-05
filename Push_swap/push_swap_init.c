@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:31:01 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 17:31:06 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/05 19:36:41 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	*ft_init_b(int size)
 	int	*stack_b;
 	int	i;
 
-	stack_b = malloc(sizeof(int) * size)
+	stack_b = malloc(sizeof(int) * size);
 	if (!stack_b)
 		return (NULL);
 	i = 0;
@@ -46,15 +46,15 @@ int	*ft_init_b(int size)
 	return (stack_b);
 }
 
-s_info	*ft_init_info(int size)
+t_info	*ft_init_info(int size)
 {
-	s_info	*stack_info;
+	t_info	*stack_info;
 
-	stack_info = malloc(sizeof(s_info));
+	stack_info = malloc(sizeof(t_info));
 	if (!stack_info)
 		return (NULL);
 	stack_info->stack_size = size;
-	stack_info->top_index_a = size - 1;
-	stack_info->top_index_b = -1;
+	stack_info->top_a = size - 1;
+	stack_info->top_b = -1;
 	return (stack_info);
 }

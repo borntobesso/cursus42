@@ -6,13 +6,13 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 17:52:23 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 17:59:09 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/05 19:30:50 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(s_info *stack_info, int *stack_a)
+void	rra(t_info *stack_info, int *stack_a)
 {
 	int	tmp;
 	int	i;
@@ -27,7 +27,7 @@ void	rra(s_info *stack_info, int *stack_a)
 	}
 }
 
-void	rrb(s_info *stack_info, int *stack_b)
+void	rrb(t_info *stack_info, int *stack_b)
 {
 	int	tmp;
 	int	i;
@@ -42,7 +42,7 @@ void	rrb(s_info *stack_info, int *stack_b)
 	}
 }
 
-void	rrr(s_info *stack_info, int *stack_a, int *stack_b)
+void	rrr(t_info *stack_info, int *stack_a, int *stack_b)
 {
 	rra(stack_info, stack_a);
 	rrb(stack_info, stack_b);

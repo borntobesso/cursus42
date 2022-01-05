@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:56:37 by sojung            #+#    #+#             */
-/*   Updated: 2021/12/10 17:57:05 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/16 13:19:49 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_putptr(unsigned long ptr, int flag)
 	base = "0123456789abcdef";
 	i = 0;
 	if (ptr == 0)
-		return (write(1, "(nil)", 5));
+		return (write(1, "0x0", 3));
 	if (flag == 0)
 		i += write(1, "0x", 2);
 	if (ptr > 15)

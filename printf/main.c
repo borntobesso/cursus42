@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:55:20 by sojung            #+#    #+#             */
-/*   Updated: 2021/12/10 17:38:35 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/16 13:19:43 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	main(void)
 	printf("%p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
 	printf("%p %p\n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
 	printf("%p %p\n", (void *)0, (void *)0);
+	printf("five percentages : %%%%% \n");
+	printf("a percentage in the middle : % \n");
 	ft_printf("\n\n-------my ft_printf-------\n\n");
 	ret1 = ft_printf("This is a test\n");
 	ret2 = ft_printf("there are\\\t%d monkeys\n", var1);
@@ -56,5 +58,8 @@ int	main(void)
 	ft_printf("%p %p\n", LONG_MIN, LONG_MAX);
 	ft_printf("%p %p\n", ULONG_MAX, -ULONG_MAX);
 	ft_printf("%p %p\n", 0, 0);
+	ft_printf("five percentages : %%%%% \n");
+	ft_printf("a percentage in the middle : % \n");
+
 	return (0);
 }

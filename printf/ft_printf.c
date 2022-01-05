@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 17:08:33 by sojung            #+#    #+#             */
-/*   Updated: 2021/12/10 17:56:46 by sojung           ###   ########.fr       */
+/*   Updated: 2021/12/16 13:19:37 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int	ft_printf(const char *s, ...)
 	i = 0;
 	while (s && s[i])
 	{
-		if (s[i] == '%' && s[i + 1])
+		if (s[i] == '%')
 		{
 			type = ft_detect_format(s[i + 1]);
 			if (type != 'n')
 				ft_print_arg(type, &i, &count, ap);
 			else
-				count += ft_putchar(s[i]);
+				i++;
 		}
 		else
 			count += ft_putchar(s[i]);

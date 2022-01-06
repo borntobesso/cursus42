@@ -6,67 +6,78 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:38:31 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 19:30:21 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/06 15:01:00 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_info *stack_info, int *stack_a)
+void	sa(t_info *stack_info)
 {
 	int	tmp;
+	int	i;
 	
-	if (stack_info->top_a > 0)
+	i = stack_info->top_a;
+	if (i > 0)
 	{
-		tmp = stack_a[stack_info->top_a];
-		stack_a[stack_info->top_a] = stack_a[stack_info->top_a - 1];
-		stack_a[stack_info->top_a - 1] = tmp;
+		tmp = stack_info->stack_a[i];
+		stack_info->stack_a[i] = stack_info->stack_a[i - 1];
+		stack_info->stack_a[i - 1] = tmp;
 	}
 }
 
 void	sb(t_info *stack_info, int *stack_b)
 {
 	int	tmp;
+	int	i;
 
-	if (stack_info->top_b > 0)
+	i = stack_info->top_b;
+	if (i > 0)
 	{
-		tmp = stack_b[stack_info->top_b];
-		stack_b[stack_info->top_b] = stack_b[stack_info->top_b - 1];
-		stack_b[stack_info->top_b - 1] = tmp;
+		tmp = stack_info->stack_b[i];
+		stack_info->stack_b[i] = stack_info->stack_b[i - 1];
+		stack_info->stack_b[i - 1] = tmp;
 	}
 }
 
-void	ss(t_info *stack_info, int *stack_a, int *stack_b)
+void	ss(t_info *stack_info)
 {
-	sa(stack_info, stack_a);
-	sb(stack_info, stack_b);
+	sa(stack_info);
+	sb(stack_info);
 }
 
-void	pa(t_info *stack_info, int *stack_a, int *stack_b)
-{
-	int	tmp;
-
-	if (stack_info->top_b != -1)
-	{
-		tmp = stack_b[stack_info->top_b];
-		stack_a[stack_info->top_a + 1] = tmp;
-		stack_b[stack_info->top_b] = 0;
-		stack_info->top_a += 1;
-		stack_info->top_b -= 1;
-	}
-}
-
-void	pb(t_info *stack_info, int *stack_a, int *stack_b)
+void	pa(t_info *stack_info)
 {
 	int	tmp;
+	int	ib;
+	int	ia;
 
-	if (stack_info->top_a != -1)
+	ib = stack_info->top_b;
+	ia = stack_info->top_a;
+	if (ib != -1)
 	{
-		tmp = stack_a[stack_info->top_a];
-		stack_b[stack_info->top_b + 1] = tmp;
-		stack_a[stack_info->top_a] = 0;
-		stack_info->top_b += 1;
-		stack_info->top_a -= 1;
+		tmp = stack_info->stack_b[ib];
+		stack_info->stack_a[ia + 1] = tmp;
+		stack_info->stack_b[ib] = 0;
+		ia += 1;
+		ib -= 1;
 	}
+}
 
+void	pb(t_info *stack_info)
+{
+	int	tmp;
+	int	ia;
+	int	ib;
+
+	ia = stack_info->top_a;
+	ib = stack_info->top_b;
+	if (ia != -1)
+	{
+		tmp = stack_info->stack_a[ia];
+		stack_info->stack_b[ib + 1] = tmp;
+		stack_info->stack_a[ia] = 0;
+		ib += 1;
+		ia -= 1;
+	}
 }

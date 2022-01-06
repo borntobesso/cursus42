@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:31:01 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 19:36:41 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/06 15:45:07 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,12 @@ int	*ft_init_b(int size)
 	return (stack_b);
 }
 
-t_info	*ft_init_info(int size)
+t_info	*ft_init_info(t_info *stack_info, int size, char **argv)
 {
-	t_info	*stack_info;
-
-	stack_info = malloc(sizeof(t_info));
-	if (!stack_info)
-		return (NULL);
 	stack_info->stack_size = size;
 	stack_info->top_a = size - 1;
 	stack_info->top_b = -1;
+	stack_info->stack_a = ft_init_a(size, argv);
+	stack_info->stack_b = ft_init_b(size);
 	return (stack_info);
 }

@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 16:32:53 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 19:33:22 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/06 17:58:11 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,23 @@ int	ft_isdigit(char c)
 		return (0);
 }
 
+void	error_case(int i, t_info *stack_info) // i = 1 : error message, 0 : free stacks
+{
+	if (i == 1)
+		write(2, "Error\n", 6);
+	else if (i == 0)
+	{
+		free(stack_info->stack_a);
+		free(stack_info->stack_b);
+	}
+	exit (0);
+}
+
 int	check_double_arg(int pos, char **argv)
 {
 	int	i;
 
+	i = 0;
 	while (i < pos)
 	{
 		if (ft_atoi(argv[i]) == ft_atoi(argv[pos]))
@@ -56,7 +69,7 @@ long long int	ft_atoi(const char *s)
 	return (sign * res);
 }
 
-int	check_valid_args(int argc, char **argv) // double, digit, int_max/int_min, NULL argument
+void	check_valid_args(int argc, char **argv, t_info *stack_info) // double, digit, int_max/int_min, NULL argument
 {
 	int	i;
 	int	j;
@@ -64,20 +77,20 @@ int	check_valid_args(int argc, char **argv) // double, digit, int_max/int_min, N
 	i = 0;
 	while (i < argc)
 	{
-		if (argv[i] == NULL)
-			return (0);
+		if (argv == NULL || argv[i] == NULL)
+			error_case(1, stack_info);
 		j = 0;
 		if (argv[i][0] == '+' || argv[i][0] == '-')
 			j++;
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
-				return (0);
+				error_case(1, stack_info);
 			j++;
 		}
-		if (ft_atoi(argv[i]) > INT_MAX || ft_atoi(argv[i]) < INT_MIN)
-			return (0);
+		if (ft_atoi(argv[i]) > INT_MAX || ft_atoi(argv[i]) < INT_MIN || \
+			(check_double_arg(i, argv) == 1))
+			error_case(1, stack_info);
 		i++;
 	}
-	return (1);
 }

@@ -6,39 +6,56 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:32:23 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/05 19:38:29 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/06 18:13:24 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	is_sorted(t_info *stack_info)
 {
-	int	*stack_a; // to free at the end
-	int	*stack_b; // to free at the end
-	struct s_info	*stack_info; // to free at the end
+	int	i;
+	int	size;
+	int	*a;
 
-	if (argc > 1)
+	size = stack_info->stack_size;
+	a = stack_info->stack_a;
+	if (a == NULL || size <= 1)
+		error_case(0, stack_info);
+	i = 0;
+	while (i < size - 1)
 	{
-		if (check_valid_args(argc - 1, argv + 1) == 0)
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-		stack_a = ft_init_a(argc - 1, argv + 1);
-		stack_b = ft_init_b(argc - 1);
-		stack_info = ft_init_info(argc - 1);
+		if (a[i] < a[i + 1])
+			return ;
+		i++;
 	}
+	error_case(0, stack_info);
+}	// check if already sorted. if yes, free stacks and finish
 
+void	print_arr(t_info *stack_info)
+{
 	int	i;
 
 	i = stack_info->stack_size - 1;
 	while (i >= 0)
 	{
-		printf("%d %d\n", stack_a[i], stack_b[i]);
+		printf("%d %d\n", stack_info->stack_a[i], stack_info->stack_b[i]);
 		i--;
-	}
+	}	
 	printf("- -\n");
 	printf("a b\n");
+}
+
+int	main(int argc, char **argv)
+{
+	t_info	stack_info;
+
+	if (argc > 1)
+	{
+		check_valid_args(argc - 1, argv + 1, &stack_info);
+		ft_init_info(&stack_info, argc - 1, argv + 1);
+		is_sorted(&stack_info);
+		print_arr(&stack_info);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/06 15:42:19 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/10 18:35:14 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,41 @@ typedef struct s_info
 	int	*stack_b;
 } t_info;
 
-int	*ft_init_a(int size, char **args);
-int	*ft_init_b(int size);
-t_info	*ft_init_info(t_info *stack_info, int size, char **args);
+int			*ft_init_a(int size, char **args);
+int			*ft_init_b(int size);
+t_info		*ft_init_info(t_info *stack_info, int size, char **args);
 
-int	ft_isdigit(char c);
-void	error_case(int i, t_info *stack_info);
-int	check_double_arg(int pos, char **argv);
+int			ft_isdigit(char c);
+void		error_case(int i, t_info *stack_info);
+int			check_double_arg(int pos, char **argv);
 long long int	ft_atoi(const char *s);
-void	check_valid_args(int argc, char **argv, t_info *stack_info);
+void		check_valid_args(int argc, char **argv, t_info *stack_info);
 
-void	is_sorted(t_info *stack_info);
+void		is_sorted(t_info *stack_info);
+void		print_arr(t_info *stack_info);
 
-void	sa(t_info *stack_info);
-void	sb(t_info *stack_info);
-void	ss(t_info *stack_info);
-void	pa(t_info *stack_info);
-void	pb(t_info *stack_info);
+int			ft_min_index(int *stack, int size);
+int			ft_max_index(int *stack, int size);
+void		sort_3(t_info *stack_info);
 
-void	ra(t_info *stack_info);
-void	rb(t_info *stack_info);
-void	rr(t_info *stack_info);
+int			srch_index(int b, t_info *stack_info);
+void		rra_pa_ra_ra(t_info *stack_info);
+void		insert_5_1(t_info *stack_info, int i);
+void		insert_5_2(t_info *stack_info, int i);
+void		sort_5(t_info *stack_info);
 
-void	rra(t_info *stack_info);
-void	rrb(t_info *stack_info);
-void	rrr(t_info *stack_info);
+void		sa(t_info *stack_info);
+void		sb(t_info *stack_info);
+void		ss(t_info *stack_info);
+void		pa(t_info *stack_info);
+void		pb(t_info *stack_info);
+
+void		ra(t_info *stack_info);
+void		rb(t_info *stack_info);
+void		rr(t_info *stack_info);
+
+void		rra(t_info *stack_info);
+void		rrb(t_info *stack_info);
+void		rrr(t_info *stack_info);
 
 #endif

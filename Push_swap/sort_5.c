@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:34:49 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/11 13:03:20 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/11 19:08:14 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	srch_pivot(t_info *stack_info)
 	int	count;
 
 	i = 0;
+	if (stack_info->top_a == 0)
+		return (stack_info->stack_a[0]);
 	while (i < stack_info->top_a + 1)
 	{
 		j = 0;

@@ -5,92 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 14:42:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/10 17:00:17 by sojung           ###   ########.fr       */
+/*   Created: 2022/01/11 12:34:49 by sojung            #+#    #+#             */
+/*   Updated: 2022/01/11 13:03:20 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	srch_index(int b, t_info *stack_info)
+int	srch_pivot(t_info *stack_info)
 {
 	int	i;
-	int	*a;
+	int	j;
+	int	count;
 
-	a = stack_info->stack_a;
-	i = stack_info->top_a;
-	while (i >= 0)
+	i = 0;
+	while (i < stack_info->top_a + 1)
 	{
-		if (b < a[i])
-			return (i + 1);
-		i--;
+		j = 0;
+		count = 0;
+		while (j < stack_info->top_a + 1)
+		{
+			if (stack_info->stack_a[i] > stack_info->stack_a[j])
+				count++;
+			j++;
+		}
+		if (count == (stack_info->top_a / 2))
+			return (stack_info->stack_a[i]);
+		i++;
 	}
-	return (i + 1);
-}
-
-void	rra_pa_ra_ra(t_info *stack_info)
-{
-	rra(stack_info);
-	pa(stack_info);
-	ra(stack_info);
-	ra(stack_info);
-}
-
-void	insert_5_1(t_info *stack_info, int i)
-{
-	if (i == 0)
-	{
-		pa(stack_info);
-		ra(stack_info);
-	}
-	else if (i == 1)
-		rra_pa_ra_ra(stack_info);
-	else if (i == 2)
-	{
-		ra(stack_info);
-		pa(stack_info);
-		rra(stack_info);
-	}
-	else
-		pa(stack_info);
-}
-
-void	insert_5_2(t_info *stack_info, int i)
-{
-	if (i == 0)
-	{
-		pa(stack_info);
-		ra(stack_info);
-	}
-	else if (i == 1)
-		rra_pa_ra_ra(stack_info);
-	else if (i == 2)
-	{
-		ra(stack_info);
-		ra(stack_info);
-		pa(stack_info);
-		rra(stack_info);
-		rra(stack_info);
-	}
-	else if (i == 3)
-	{
-		ra(stack_info);
-		pa(stack_info);
-		rra(stack_info);
-	}
-	else
-		pa(stack_info);
+	return (stack_info->stack_a[0]);
 }
 
 void	sort_5(t_info *stack_info)
 {
-	int	index;
+	int	pivot;
+	int	i;
 
-	pb(stack_info);
-	pb(stack_info);
+	pivot = srch_pivot(stack_info);
+	i = 0;
+	while (i < stack_info->top_a + 1)
+	{
+		if (stack_info->stack_a[stack_info->top_a] < pivot)
+			pb(stack_info);
+		else
+			ra(stack_info);
+		i++;
+	}
 	sort_3(stack_info);
-	index = srch_index(stack_info->stack_b[1], stack_info);
-	insert_5_1(stack_info, index);
-	index = srch_index(stack_info->stack_b[0], stack_info);
-	insert_5_2(stack_info, index);
+	if (stack_info->stack_b[0] > stack_info->stack_b[1])
+		sb(stack_info);
+	pa(stack_info);
+	pa(stack_info);
 }

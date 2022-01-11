@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/10 18:35:14 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/11 12:08:44 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			srch_index(int b, t_info *stack_info);
 void		rra_pa_ra_ra(t_info *stack_info);
 void		insert_5_1(t_info *stack_info, int i);
 void		insert_5_2(t_info *stack_info, int i);
+int			srch_pivot(t_info *stack_info);
 void		sort_5(t_info *stack_info);
 
 void		sa(t_info *stack_info);

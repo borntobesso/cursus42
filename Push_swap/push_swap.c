@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:32:23 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/10 16:08:17 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/12 16:37:05 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,16 @@ int	main(int argc, char **argv)
 		check_valid_args(argc - 1, argv + 1, &stack_info);
 		ft_init_info(&stack_info, argc - 1, argv + 1);
 		is_sorted(&stack_info);
-		print_arr(&stack_info);
+//		print_arr(&stack_info);
 		if (argc == 4)
 			sort_3(&stack_info);
+		else if (argc == 3)
+			sa(&stack_info);
 		else if (argc == 6)
 			sort_5(&stack_info);
-		print_arr(&stack_info);
+		else
+			big_sort(&stack_info);
+//		print_arr(&stack_info);
 	}
 	return (0);
 }

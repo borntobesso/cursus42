@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:30:05 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/11 22:10:07 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/12 13:33:35 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	push_no_lis(t_info *stack_info)
 	}
 }
 */
+
 void	pivot_push(t_info *stack_info)
 {
 	int	pivot;
@@ -92,17 +93,33 @@ void	pivot_push(t_info *stack_info)
 
 	if (stack_info->top_a == 0)
 		return ;
-	pivot = srch_pivot(stack_info);
-	i = 0;
-	while (i < stack_info->top_a + 1)
+	pivot = srch_pivot(stack_info->);
+	printf("pivot = %d\n", pivot);
+	printf("top_a = %d\n", stack_info->top_a);
+	i = stack_info->top_a;
+	while (i >= 0)
 	{
-		if (stack_info->stack_a[stack_info->top_a] < pivot)
+		if (stack_info->stack_a[stack_info->top_a] <= pivot)
 			pb(stack_info);
 		else
 			ra(stack_info);
-		i++;
+		i--;
 	}
+	pivot_push(stack_info);
+	print_arr(stack_info); // test
+}
+
+void	sort_big(t_info *stack_info)
+{
 	pivot_push(stack_info);
 }
 
-void	
+void	pivot_sort_b(t_info *stack_info)
+{
+	int	pivot;
+	int	i;
+
+	if (stack_info->top_b == 0)
+		return ;
+	pivot = srch_pivot(stack
+}

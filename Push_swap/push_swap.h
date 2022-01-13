@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/12 18:57:57 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:33:02 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,25 @@ int			srch_index(int b, t_info *stack_info);
 int			srch_pivot(int *stack, int top_index);
 void		sort_5(t_info *stack_info);
 
+//
 void		pivot_push(t_info *stack_info);
 void		sort_big(t_info *stack_info);
+//
 
-int			count_mov(t_info *stack_into, int index);
-void		a_to_b(t_info *stack_info, int index);
-int			srch_elem_top(t_info *stack_info, int pivot);
-int			srch_elem_bot(t_info *stack_info, int pivot);
+void		push_all_to_b(t_info *stack_info);
+int			count_mov(int top_index, int index);
+int			ft_abs(int value);
+void		a_to_b(t_info *stack_info, int index, int *count_pb);
+int			srch_top(t_info *stack_info, int pivot);
+int			srch_bot(t_info *stack_info, int pivot);
+void		srch_and_move(t_info *stack_info, int pivot, int *count_pb);
+int			pivot_sort(t_info *stack_info, int *count_pb);
+int			calcul_mov(t_info *stack_info, int index_b);
+int			srch_min_mov(t_info *stack_info, int pivot);
+void		two_dir_r(t_info *stack_info, int mov_a, int mov_b);
+void		action_pos(t_info *stack_info, int mov_a, int mov_b);
+void		action_neg(t_info *stack_info, int mov_a, int mov_b);
+void		action_b(t_info *stack_info, int index_b);
 void		big_sort(t_info *stack_info);
 
 void		sa(t_info *stack_info);

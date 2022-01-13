@@ -6,27 +6,27 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:34:49 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/12 18:57:34 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/13 15:52:40 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	srch_index(int b, t_info *stack_info)
+int	srch_index(int b, t_info *stack_info) // serch for the correct index in the stack A
 {
 	int	i;
 
 	i = 0;
+	if (stack_info->top_a == -1)
+		return (0);
 	while (i < stack_info->top_a)
 	{
-		if (b < stack_info->stack_a[i] && b > stack_info->stack_a[i + 1])
-		{
-			if (i == stack_info->top_a - 1)
-				
-			return (i + 1)
-		}
+		if (b < stack_info->stack_a[i] && b > stack_info->stack_a[i + 1])			
+			return (i + 1);
 		i++;
 	}
+	if (b < stack_info->stack_a[i] && b > stack_info->stack_a[0])
+		return (0);
 	return (0);
 }
 

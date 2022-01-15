@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/13 18:33:02 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/15 16:53:59 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ int			srch_index(int b, t_info *stack_info);
 int			srch_pivot(int *stack, int top_index);
 void		sort_5(t_info *stack_info);
 
-//
-void		pivot_push(t_info *stack_info);
-void		sort_big(t_info *stack_info);
-//
-
 void		push_all_to_b(t_info *stack_info);
 int			count_mov(int top_index, int index);
 int			ft_abs(int value);
@@ -67,6 +62,7 @@ void		two_dir_r(t_info *stack_info, int mov_a, int mov_b);
 void		action_pos(t_info *stack_info, int mov_a, int mov_b);
 void		action_neg(t_info *stack_info, int mov_a, int mov_b);
 void		action_b(t_info *stack_info, int index_b);
+void		rotate_top(t_info *stack_info);
 void		big_sort(t_info *stack_info);
 
 void		sa(t_info *stack_info);

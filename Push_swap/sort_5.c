@@ -6,13 +6,13 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:34:49 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/13 15:52:40 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/15 16:49:33 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	srch_index(int b, t_info *stack_info) // serch for the correct index in the stack A
+int	srch_index(int b, t_info *stack_info) //search for the correct index in the stack A
 {
 	int	i;
 
@@ -22,12 +22,19 @@ int	srch_index(int b, t_info *stack_info) // serch for the correct index in the 
 	while (i < stack_info->top_a)
 	{
 		if (b < stack_info->stack_a[i] && b > stack_info->stack_a[i + 1])			
-			return (i + 1);
+			return (i);
 		i++;
 	}
 	if (b < stack_info->stack_a[i] && b > stack_info->stack_a[0])
-		return (0);
-	return (0);
+		return (i);
+	i = 0;
+	while (i < stack_info->top_a)
+	{
+		if (stack_info->stack_a[i] < stack_info->stack_a[i + 1])
+			return (i);
+		i++;
+	}
+	return (i);
 }
 
 int	srch_pivot(int *stack, int top_index)
@@ -61,7 +68,7 @@ void	sort_5(t_info *stack_info)
 
 	pivot = srch_pivot(stack_info->stack_a, stack_info->top_a);
 	i = 0;
-	while (i < stack_info->top_a + 1)
+	while (i < stack_info->stack_size + 1)
 	{
 		if (stack_info->stack_a[stack_info->top_a] < pivot)
 			pb(stack_info);

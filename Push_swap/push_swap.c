@@ -6,11 +6,23 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:32:23 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/15 15:31:43 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/16 16:51:11 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	error_case(int i, t_info *stack_info) // i = 1 : error message, 0 : free stacks
+{
+	if (i == 1)
+		write(2, "Error\n", 6);
+	else if (i == 0)
+	{
+		free(stack_info->stack_a);
+		free(stack_info->stack_b);
+	}
+	exit (0);
+}
 
 void	is_sorted(t_info *stack_info)
 {
@@ -56,10 +68,10 @@ int	main(int argc, char **argv)
 		ft_init_info(&stack_info, argc - 1, argv + 1);
 		is_sorted(&stack_info);
 //		print_arr(&stack_info);
-		if (argc == 4)
-			sort_3(&stack_info);
-		else if (argc == 3)
+		if (argc == 3)
 			sa(&stack_info);
+		else if (argc == 4)
+			sort_3(&stack_info);
 		else if (argc == 6)
 			sort_5(&stack_info);
 		else

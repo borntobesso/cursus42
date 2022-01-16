@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:32:23 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/16 16:51:11 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/16 18:32:24 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(int argc, char **argv)
 		else
 			big_sort(&stack_info);
 //		print_arr(&stack_info);
+		free(stack_info.stack_a);
+		free(stack_info.stack_b);
 	}
 	return (0);
 }

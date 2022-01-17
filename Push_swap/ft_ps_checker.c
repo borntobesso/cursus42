@@ -1,78 +1,91 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_r.c                                             :+:      :+:    :+:   */
+/*   ft_ps_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 17:14:50 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/17 15:26:29 by sojung           ###   ########.fr       */
+/*   Created: 2022/01/17 16:33:51 by sojung            #+#    #+#             */
+/*   Updated: 2022/01/17 16:38:00 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_info *stack_info)
+void	sa_ch(t_info *stack_info)
 {
-	int	i;
 	int	tmp;
-
+	int	i;
+	
 	i = stack_info->top_a;
-	if (i == 0 || i == -1)
-		return ;
-	while (i > 0)
+	if (i > 0)
 	{
 		tmp = stack_info->stack_a[i];
 		stack_info->stack_a[i] = stack_info->stack_a[i - 1];
 		stack_info->stack_a[i - 1] = tmp;
-		i--;
 	}
-	write(1, "ra\n", 3);
 }
 
-void	rb(t_info *stack_info)
+void	sb_ch(t_info *stack_info)
 {
-	int	i;
 	int	tmp;
+	int	i;
 
 	i = stack_info->top_b;
-	if (i == 0 || i == -1)
-		return ;
-	while (i > 0)
+	if (i > 0)
 	{
 		tmp = stack_info->stack_b[i];
 		stack_info->stack_b[i] = stack_info->stack_b[i - 1];
 		stack_info->stack_b[i - 1] = tmp;
-		i--;
 	}
-	write(1, "rb\n", 3);
 }
 
-void	rr(t_info *stack_info)
+void	ss_ch(t_info *stack_info)
 {
-	int	i;
-	int	j;
 	int	tmp;
-
+	int	i;
+	int j;
+	
 	i = stack_info->top_a;
 	j = stack_info->top_b;
-	while (i > 0)
+	if (i > 0)
 	{
-		if (i == 0)
-			break;
 		tmp = stack_info->stack_a[i];
 		stack_info->stack_a[i] = stack_info->stack_a[i - 1];
 		stack_info->stack_a[i - 1] = tmp;
-		i--;
 	}
-	while (j > 0)
+	if (j > 0)
 	{
-		if (j == 0)
-			break;
 		tmp = stack_info->stack_b[j];
 		stack_info->stack_b[j] = stack_info->stack_b[j - 1];
 		stack_info->stack_b[j - 1] = tmp;
-		j--;
 	}
-	write(1, "rr\n", 3);
+}
+
+void	pa_ch(t_info *stack_info)
+{
+	int	tmp;
+
+	if (stack_info->top_b != -1)
+	{
+		tmp = stack_info->stack_b[stack_info->top_b];
+		stack_info->stack_a[stack_info->top_a + 1] = tmp;
+		stack_info->stack_b[stack_info->top_b] = 0;
+		stack_info->top_a += 1;
+		stack_info->top_b -= 1;
+	}
+}
+
+void	pb_ch(t_info *stack_info)
+{
+	int	tmp;
+	
+	if (stack_info->top_a != -1)
+	{
+		tmp = stack_info->stack_a[stack_info->top_a];
+		stack_info->stack_b[stack_info->top_b + 1] = tmp;
+		stack_info->stack_a[stack_info->top_a] = 0;
+		stack_info->top_b += 1;
+		stack_info->top_a -= 1;
+	}
 }

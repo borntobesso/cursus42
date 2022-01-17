@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 17:23:17 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/16 17:23:30 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/17 14:49:50 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+
+int	count_l(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	if (i > 11)
 		return (1);
 	else
 		return (0);
@@ -57,7 +70,7 @@ long long int	ft_atoi(const char *s)
 	return (sign * res);
 }
 
-void	check_valid_args(int argc, char **argv, t_info *stack_info) // double, digit, int_max/int_min, NULL argument
+void	check_valid_args(int argc, char **argv, t_info *stack_info)
 {
 	int	i;
 	int	j;
@@ -70,6 +83,8 @@ void	check_valid_args(int argc, char **argv, t_info *stack_info) // double, digi
 		j = 0;
 		if (argv[i][0] == '+' || argv[i][0] == '-')
 			j++;
+		if (argv[i][j] == '\0')
+			error_case(1, stack_info);
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
@@ -77,7 +92,7 @@ void	check_valid_args(int argc, char **argv, t_info *stack_info) // double, digi
 			j++;
 		}
 		if (ft_atoi(argv[i]) > INT_MAX || ft_atoi(argv[i]) < INT_MIN || \
-			(check_double_arg(i, argv) == 1))
+			(check_double_arg(i, argv) == 1) || count_l(argv[i]))
 			error_case(1, stack_info);
 		i++;
 	}

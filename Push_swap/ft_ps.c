@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 17:14:14 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/10 17:14:28 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:08:14 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sa(t_info *stack_info)
 {
 	int	tmp;
 	int	i;
-	
+
 	i = stack_info->top_a;
 	if (i > 0)
 	{
@@ -46,8 +46,8 @@ void	ss(t_info *stack_info)
 {
 	int	tmp;
 	int	i;
-	int j;
-	
+	int	j;
+
 	i = stack_info->top_a;
 	j = stack_info->top_b;
 	if (i > 0)
@@ -83,7 +83,7 @@ void	pa(t_info *stack_info)
 void	pb(t_info *stack_info)
 {
 	int	tmp;
-	
+
 	if (stack_info->top_a != -1)
 	{
 		tmp = stack_info->stack_a[stack_info->top_a];

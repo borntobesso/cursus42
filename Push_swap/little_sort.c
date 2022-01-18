@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 17:28:50 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/16 17:28:56 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:41:46 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sort_5(t_info *stack_info)
 	int	pivot;
 	int	i;
 
-	pivot = srch_pivot(stack_info->stack_a, stack_info->top_a);
+	pivot = srch_pivot(stack_info->stack_a, stack_info->top_a, 2);
 	i = 0;
 	while (i < stack_info->stack_size + 1)
 	{

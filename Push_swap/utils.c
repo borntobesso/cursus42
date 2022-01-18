@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_3.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:01:06 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/16 17:26:27 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:29:07 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_max_index(int *stack, int size)
 	return (max_index);
 }
 
-int	srch_index(int b, t_info *stack_info) //search for the correct index in the stack A
+int	srch_index(int b, t_info *stack_info)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ int	srch_index(int b, t_info *stack_info) //search for the correct index in the 
 	return (i);
 }
 
-int	srch_pivot(int *stack, int top_index)
+int	srch_pivot(int *stack, int top_index, int n)
 {
 	int	i;
 	int	j;
@@ -86,7 +86,7 @@ int	srch_pivot(int *stack, int top_index)
 				count++;
 			j++;
 		}
-		if (count == (top_index / 2))
+		if (count == (top_index / n))
 			return (stack[i]);
 		i++;
 	}

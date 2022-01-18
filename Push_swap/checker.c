@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:24:36 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/17 19:57:12 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:29:56 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,46 @@ int	is_sorted_checker(t_info *stack_dup)
 	return (1);
 }
 
-void	print_res(t_info *stack_info, t_info *stack_dup)
+void	print_res(t_info *stack_info)
 {
-	if (is_sorted_checker(stack_dup) && (stack_dup->top_b == -1))
+	if (is_sorted_checker(stack_info) && (stack_info->top_b == -1))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	ft_free(stack_info, stack_dup);
+	ft_free(stack_info);
 }	
 
-void	print_stack(t_info *stack)
+void	ft_read(t_list **ops_lst)
 {
-	int	i;
+	char	save[4];
+	char	c;
+	int		i;
+	t_list	*new;
+	char	*dup;
 
-	i = stack->stack_size - 1;
-	while (i-- >= 0)
-		printf("%d\n", stack->stack_a[i]);
+	i = 0;
+	while (read(0, &c, 1))
+	{
+		save[i] = c;
+		i++;
+		if (c == '\n')
+		{
+			dup = ft_strdup(save);
+			if (dup)
+			{
+				new = ft_lstnew(ft_strdup(save));
+				ft_lstadd_back(ops_lst, new);
+			}
+			i = 0;
+		}	
+	}
 }
+
 int	main(int argc, char **argv)
 {
 	t_info	stack_info;
-	t_info	stack_dup;
 	char	buf[40000];
+	int		i;
 	char	**ops;
 
 	if (argc > 1)
@@ -57,22 +75,11 @@ int	main(int argc, char **argv)
 		check_valid_args(argc - 1, argv + 1, &stack_info);
 		ft_init_info(&stack_info, argc - 1, argv + 1);
 		is_sorted(&stack_info);
-		ft_dup_info(&stack_info, &stack_dup);
-		print_stack(&stack_info);
-		print_stack(&stack_dup);
-		if (argc == 3)
-			sa(&stack_info);
-		else if (argc == 4)
-			sort_3(&stack_info);
-		else if (argc == 6)
-			sort_5(&stack_info);
-		else
-			big_sort(&stack_info);
-		read(1, buf, 39999);
-		ops = ft_split(buf, &stack_info, &stack_dup);
-		do_ops(ops, &stack_dup);
-		print_stack(&stack_dup);
-		print_res(&stack_info, &stack_dup);
+		i = read(0, buf, 39999);
+		buf[i] = '\0';
+		ops = ft_split(buf, &stack_info);
+		do_ops(ops, &stack_info);
+		print_res(&stack_info);
 	}
 	return (0);
 }

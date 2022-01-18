@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 17:45:20 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/16 17:45:33 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:28:45 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	srch_and_move(t_info *stack_info, int pivot, int *count_pb)
 {
 	int	top_el;
 	int	bot_el;
-	int count_top;
+	int	count_top;
 	int	count_bot;
-	
+
 	while (1)
 	{
 		top_el = srch_top(stack_info, pivot);
@@ -80,11 +80,10 @@ void	srch_and_move(t_info *stack_info, int pivot, int *count_pb)
 	}
 }
 
-int	pivot_sort(t_info *stack_info, int *count_pb)
+void	pivot_sort(t_info *stack_info, s_pivot *pivot_info)
 {
-	int	pivot;
-
-	pivot = srch_pivot(stack_info->stack_a, stack_info->top_a);
-	srch_and_move(stack_info, pivot, count_pb);
-	return (pivot);
+	pivot_info->pivot1 = srch_pivot(stack_info->stack_a, stack_info->top_a, 2);
+	srch_and_move(stack_info, pivot_info->pivot1, &pivot_info->pb1);
+	pivot_info->pivot2 = srch_pivot(stack_info->stack_a, stack_info->top_a, 2);
+	srch_and_move(stack_info, pivot_info->pivot2, &pivot_info->pb2);
 }

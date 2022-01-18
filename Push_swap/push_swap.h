@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/17 19:57:24 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:17:56 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ typedef struct s_info
 	int	*stack_a;
 	int	*stack_b;
 } t_info;
+
+typedef struct s_pivot
+{
+	int	pivot1;
+	int	pivot2;
+	int	pb1;
+	int	pb2;
+} s_pivot;
+
+typedef struct s_list
+{
+	char *ops;
+	struct s_list *next;
+} t_list;
 
 /***	initializing functions (ft_init.c)	***/
 int				*ft_init_a(int size, char **args);
@@ -50,7 +64,7 @@ void			print_arr(t_info *stack_info);
 int				ft_min_index(int *stack, int size);
 int				ft_max_index(int *stack, int size);
 int				srch_index(int b, t_info *stack_info);
-int				srch_pivot(int *stack, int top_index);
+int				srch_pivot(int *stack, int top_index, int n);
 
 /***	3 and 5 elements functions (little_sort.c)	***/
 void			sort_3(t_info *stack_info);
@@ -67,7 +81,7 @@ void			a_to_b(t_info *stack_info, int index, int *count_pb);
 int				srch_top(t_info *stack_info, int pivot);
 int				srch_bot(t_info *stack_info, int pivot);
 void			srch_and_move(t_info *stack_info, int pivot, int *count_pb);
-int				pivot_sort(t_info *stack_info, int *count_pb);
+void			pivot_sort(t_info *stack_info, s_pivot *pivot_info);
 
 /***	action functions (ft_action.c)	***/
 void			two_dir_r(t_info *stack_info, int mov_a, int mov_b);
@@ -122,18 +136,25 @@ void			ft_dup_info(t_info *stack_info, t_info *stack_dup);
 /***	checker split functions (checker_split.c)	***/
 int				ops_count(char const *s);
 char			*ops_malloc(char const *s);
-void			ft_free_split(char **res, int index, t_info *stack, t_info *dup);
-char			**ft_split(char const *s, t_info *stack, t_info *dup);
+void			ft_free_split(char **res, int index, t_info *stack);
+char			**ft_split(char const *s, t_info *stack_info);
 
 /***	checker utility fuctions (checker_utils.c)	***/
 int				ft_strcmp(char *s1, char *s2);
 void			do_ops_ps(char *ops, t_info *stack_info);
 void			do_ops_r(char *ops, t_info *stack_info);
 void			do_ops(char **ops, t_info *stack_info);
-void			ft_free(t_info *stack_info, t_info *stack_dup);
+void			ft_free(t_info *stack_info);
 
 /***	checker result print function (checker.c)	***/
 int				is_sorted_checker(t_info *stack_dup);
-void			print_res(t_info *stack_info, t_info *stack_dup);
+void			print_res(t_info *stack_info);
+void			ft_read(t_list **ops_lst);
+
+/***	checker ops list (checker_list.c)	***/
+t_list			*ft_lstnew(char *ops);
+void			ft_lstadd_back(t_list **lst, t_list *new);
+char			*ft_strdup(char *s);
+void			do_op(t_list *ops_lst, t_info *stack_dup);
 
 #endif

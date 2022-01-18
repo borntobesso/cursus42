@@ -6,7 +6,7 @@
 #    By: sojung <sojung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 17:08:37 by sojung            #+#    #+#              #
-#    Updated: 2022/01/17 19:04:43 by sojung           ###   ########.fr        #
+#    Updated: 2022/01/18 14:38:17 by sojung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ error_case.c mov_utils.c pivot_utils.c ft_action.c little_sort.c big_sort.c
 BSRCS = checker.c ft_ps_checker.c ft_r_checker.c ft_rr_checker.c ft_init.c \
 error_case.c arg_utils.c utils.c mov_utils.c pivot_utils.c ft_action.c \
 little_sort.c big_sort.c checker_init.c checker_split.c checker_utils.c\
-ft_ps.c ft_r.c ft_rr.c 
+ft_ps.c ft_r.c ft_rr.c checker_list.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,13 +6,13 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:53:47 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/17 17:54:13 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:07:01 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_case(int i, t_info *stack_info) // i = 1 : error message, 0 : free stacks
+void	error_case(int i, t_info *stack_info)
 {
 	if (i == 1)
 		write(STDERR_FILENO, "Error\n", 6);

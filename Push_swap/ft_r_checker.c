@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 16:38:10 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/17 16:39:09 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:27:47 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	rr_ch(t_info *stack_info)
 	while (i > 0)
 	{
 		if (i == 0)
-			break;
+			break ;
 		tmp = stack_info->stack_a[i];
 		stack_info->stack_a[i] = stack_info->stack_a[i - 1];
 		stack_info->stack_a[i - 1] = tmp;
@@ -66,7 +66,7 @@ void	rr_ch(t_info *stack_info)
 	while (j > 0)
 	{
 		if (j == 0)
-			break;
+			break ;
 		tmp = stack_info->stack_b[j];
 		stack_info->stack_b[j] = stack_info->stack_b[j - 1];
 		stack_info->stack_b[j - 1] = tmp;

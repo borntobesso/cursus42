@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 18:07:59 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/17 19:01:24 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:18:10 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ops_malloc(char const *s)
 	return (res);
 }
 
-void	ft_free_split(char **res, int index, t_info *stack, t_info *dup)
+void	ft_free_split(char **res, int index, t_info *stack_info)
 {
 	int	i;
 
@@ -65,11 +65,11 @@ void	ft_free_split(char **res, int index, t_info *stack, t_info *dup)
 		i++;
 	}
 	free(res);
-	ft_free(stack, dup);
+	ft_free(stack_info);
 	exit (1);
 }
-	
-char	**ft_split(char const *s, t_info *stack, t_info *dup)
+
+char	**ft_split(char const *s, t_info *stack_info)
 {
 	int		size;
 	char	**res;
@@ -88,7 +88,7 @@ char	**ft_split(char const *s, t_info *stack, t_info *dup)
 		{
 			res[i] = ops_malloc(s);
 			if (res[i] == NULL)
-				ft_free_split(res, i, stack, dup);
+				ft_free_split(res, i, stack_info);
 			i++;
 			while (*s && *s != '\n')
 				s++;

@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 17:38:12 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/16 17:39:27 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:28:15 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	count_mov(int top_index, int index)
 
 int	calcul_mov(t_info *stack_info, int index_b)
 {
-	int index_a;
+	int	index_a;
 	int	mov_a;
 	int	mov_b;
 
@@ -50,7 +50,7 @@ int	calcul_mov(t_info *stack_info, int index_b)
 
 int	srch_min_mov(t_info *stack_info, int pivot)
 {
-	int i;
+	int	i;
 	int	min_index;
 	int	min_mov;
 

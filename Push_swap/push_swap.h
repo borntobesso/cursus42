@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/18 17:17:56 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:47:45 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void			ft_free(t_info *stack_info);
 /***	checker result print function (checker.c)	***/
 int				is_sorted_checker(t_info *stack_dup);
 void			print_res(t_info *stack_info);
-void			ft_read(t_list **ops_lst);
 
 /***	checker ops list (checker_list.c)	***/
 t_list			*ft_lstnew(char *ops);

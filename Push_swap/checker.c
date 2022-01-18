@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:24:36 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/18 17:29:56 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:47:25 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,6 @@ void	print_res(t_info *stack_info)
 		write(1, "KO\n", 3);
 	ft_free(stack_info);
 }	
-
-void	ft_read(t_list **ops_lst)
-{
-	char	save[4];
-	char	c;
-	int		i;
-	t_list	*new;
-	char	*dup;
-
-	i = 0;
-	while (read(0, &c, 1))
-	{
-		save[i] = c;
-		i++;
-		if (c == '\n')
-		{
-			dup = ft_strdup(save);
-			if (dup)
-			{
-				new = ft_lstnew(ft_strdup(save));
-				ft_lstadd_back(ops_lst, new);
-			}
-			i = 0;
-		}	
-	}
-}
 
 int	main(int argc, char **argv)
 {

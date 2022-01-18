@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:39:44 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/18 17:47:45 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:58:16 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_info
 	int	top_b;
 	int	*stack_a;
 	int	*stack_b;
-} t_info;
+}	t_info;
 
 typedef struct s_pivot
 {
@@ -33,13 +33,13 @@ typedef struct s_pivot
 	int	pivot2;
 	int	pb1;
 	int	pb2;
-} s_pivot;
+}	t_pivot;
 
 typedef struct s_list
 {
-	char *ops;
-	struct s_list *next;
-} t_list;
+	char			*ops;
+	struct s_list	*next;
+}	t_list;
 
 /***	initializing functions (ft_init.c)	***/
 int				*ft_init_a(int size, char **args);

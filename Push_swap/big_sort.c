@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:33:43 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/18 17:05:10 by sojung           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:05:53 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	big_sort(t_info *stack_info)
 	int		min_index;
 	int		min_val;
 	int		n;
-	s_pivot	pivot_info;
+	t_pivot	pivot_info;
 
 	pivot_info.pb1 = 0;
 	pivot_info.pb2 = 0;

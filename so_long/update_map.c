@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:51:06 by sojung            #+#    #+#             */
-/*   Updated: 2022/02/01 15:25:13 by sojung           ###   ########.fr       */
+/*   Updated: 2022/02/01 16:32:44 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,3 @@ void	map_right(t_img *img)
 		prt_msg(img);
 	}
 }
-
-/*void	update_map(t_img *img)
-{
-	img->collect--;
-	img->move++;
-}*/

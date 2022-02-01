@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 13:55:19 by sojung            #+#    #+#             */
-/*   Updated: 2022/02/01 14:58:38 by sojung           ###   ########.fr       */
+/*   Updated: 2022/02/01 16:32:49 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ void	init_screen(t_img *img)
 
 void	prt_msg(t_img *img)
 {
-	printf("%sItems to collect : %d\n", CYAN, img->collect);
-	printf("Moves : %d\n%s", img->move, NORMAL);
+	printf("%s*---------------------------------------*\n", CYAN);
+	printf("|	Items to collect : %s%d%s		|\n", YELLOW, img->collect, CYAN);
+	printf("|	Moves		: %s%d%s		|\n", YELLOW, img->move, CYAN);
+	printf("*---------------------------------------*\n%s", NORMAL);
 }
 
 void	fin_game(t_img *img)
 {
 	put_img_0(img, img->pos_x, img->pos_y);
 	prt_msg(img);
-	printf("%sHooray! You've arrived on the Earth safely !\n%s", GREEN, NORMAL);
+	printf("%sHooray! You've arrived on the Earth safely with %s%d%s \
+moves!\n%s", GREEN, YELLOW, img->move, GREEN, NORMAL);
 	destroy_all(img);
 	exit (0);
 }

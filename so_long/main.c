@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:30:46 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/26 19:10:34 by sojung           ###   ########.fr       */
+/*   Updated: 2022/02/01 14:56:54 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,63 @@ int	close_key(int keycode, t_img *img)
 {
 	if (keycode == 0xff1b)
 	{
-		destroy_and_free_all(img, 1);
+		destroy_all(img);
 		exit (0);
 	}
+	else if (keycode == 0x77 || keycode == 0xff52) // up keys
+		map_up(img);
+	else if (keycode == 0x73 || keycode == 0xff54) // down keys
+		map_down(img);
+	else if (keycode == 0x61 || keycode == 0xff51) // left keys
+		map_left(img);
+	else if (keycode == 0x64 || keycode == 0xff53) // right keys
+		map_right(img);
 	return (0);
 }
 
 int	close_mouse(t_img *img)
 {
-	destroy_and_free_all(img, 1);
+	destroy_all(img);
 	exit (0);
 	return (0);
 }
 
-void	destroy_and_free_all(t_img *img, int flag)
+void	destroy_img(t_img *img)
 {
-	if (flag == 1)
-	{
-		if (img->img_0)
-			mlx_destroy_image(img->mlx, img->img_0);
-		if (img->img_1)
-			mlx_destroy_image(img->mlx, img->img_1);
-		if (img->img_C)
-			mlx_destroy_image(img->mlx, img->img_C);
-		if (img->img_E)
-			mlx_destroy_image(img->mlx, img->img_E);
-		if (img->img_P_W)
-			mlx_destroy_image(img->mlx, img->img_P_W);
-		if (img->img_P_S)
-			mlx_destroy_image(img->mlx, img->img_P_S);
-		if (img->img_P_A)
-			mlx_destroy_image(img->mlx, img->img_P_A);
-		if (img->img_P_D)
-			mlx_destroy_image(img->mlx, img->img_P_D);
-	}
-	mlx_destroy_window(img->mlx, img->win);
+	if (img->img_0)
+		mlx_destroy_image(img->mlx, img->img_0);
+	if (img->img_1)
+		mlx_destroy_image(img->mlx, img->img_1);
+	if (img->img_C)
+		mlx_destroy_image(img->mlx, img->img_C);
+	if (img->img_E)
+		mlx_destroy_image(img->mlx, img->img_E);
+	if (img->img_P_W)
+		mlx_destroy_image(img->mlx, img->img_P_W);
+	if (img->img_P_S)
+		mlx_destroy_image(img->mlx, img->img_P_S);
+	if (img->img_P_A)
+		mlx_destroy_image(img->mlx, img->img_P_A);
+	if (img->img_P_D)
+		mlx_destroy_image(img->mlx, img->img_P_D);
+}
+
+void	destroy_mlx(t_img *img)
+{
 	mlx_destroy_display(img->mlx);
 	free(img->mlx);
 }
 
-void	ft_error(t_img *img, char *msg, int flag)
+void	ft_error(t_img *img, char *msg, int flag) // flag 0 = destroy_mlx, flag 1 = all 
 {
-	destroy_and_free_all(img, flag);
-	printf("Error\n");
-	printf("%s", msg);
+	if (flag == 1)
+	{
+		destroy_img(img);
+		mlx_destroy_window(img->mlx, img->win);
+	}
+	destroy_mlx(img);
+	printf("%sError\n", RED);
+	printf("%s%s%s", YELLOW, msg, NORMAL);
 	exit (1);
 }
 
@@ -76,8 +89,8 @@ void	set_img_info(t_img *img)
 	int	height;
 	int	width;
 
-	height = IMG_HEIGHT;
-	width = IMG_WIDTH;
+	height = HEIGHT;
+	width = WIDTH;
 	img->img_0 = mlx_xpm_file_to_image(img->mlx, "./img/0.xpm", \
 	&width, &height);
 	img->img_1 = mlx_xpm_file_to_image(img->mlx, "./img/1.xpm", \
@@ -100,22 +113,21 @@ int	main(int argc, char **argv)
 {
 	t_img	img;
 
-	img.mlx = mlx_init();
-	img.win = mlx_new_window(img.mlx, 1920, 1080, "*  * * Zero Gravity * *  *");
 	if (argc == 2)
-		ft_parsing(argv[1], &img);	
-	mlx_hook(img.win, 2, 1L<<0, close_key, &img);
-	mlx_hook(img.win, 17, 0, close_mouse, &img);
-	set_img_info(&img);
-	check_img_set(&img);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_0, 0, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_1, 64, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_C, 128, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_E, 192, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_P_W, 256, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_P_S, 320, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_P_A, 384, 0);
-	mlx_put_image_to_window(img.mlx, img.win, img.img_P_D, 448, 0);
-	mlx_loop(img.mlx);
-	destroy_and_free_all(&img, 1);
+	{
+		ft_init_img(&img); // initialize variables to null
+		img.mlx = mlx_init();
+		img.map = ft_parsing(argv[1], &img); // for free (free_map)
+		init_player_pos(&img); // init player position
+		img.win = mlx_new_window(img.mlx, img.x * WIDTH, img.y * HEIGHT, \
+		"*  * * Zero Gravity * *  *"); // open window
+		set_img_info(&img); // init images
+		check_img_set(&img);
+		init_screen(&img); // print first scene
+		mlx_hook(img.win, 2, 1L<<0, close_key, &img);
+		mlx_hook(img.win, 17, 0, close_mouse, &img);
+		mlx_loop(img.mlx);
+		destroy_all(&img);
+	}
+	return (0);
 }

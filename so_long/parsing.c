@@ -6,7 +6,7 @@
 /*   By: sojung <sojung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:29:07 by sojung            #+#    #+#             */
-/*   Updated: 2022/01/26 19:10:30 by sojung           ###   ########.fr       */
+/*   Updated: 2022/02/01 13:57:40 by sojung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,19 @@ char	*read_map(char *file)
 		return (NULL);
 	tmp[0] = '\0';
 	fd = open(file, O_RDONLY);
-	printf("check1\n");
 	line = get_next_line(fd); // for free
-	printf("check2\n");
 	map = ft_strjoin(tmp, line, 1); // for free
-	printf("check3\n");
 	while (line)
 	{	
 		free(line);
 		line = get_next_line(fd);
 		map = ft_strjoin(map, line, 1);
 	}
-	printf("check4\n");
 	free(line);
 	return (map);
 }
 
-void	ft_parsing(char *file, t_img *img)
+char	**ft_parsing(char *file, t_img *img)
 {
 	char	*map;
 	char	**matrix;
@@ -48,15 +44,12 @@ void	ft_parsing(char *file, t_img *img)
 	map = read_map(file); // for free
 	if (!map)
 		ft_error(img, "Problem encountered reading the map.\n", 0);
-	printf("check5\n");
-	matrix = ft_split(map, '\n', img);
-	printf("check6\n");
-	free(map);
-	int i = 0;
-	while (matrix[i])
+	if (check_map(img, map) == 1)
 	{
-		printf("%s ", matrix[i]);
-		i++;
+		matrix = ft_split(map, '\n', img);
+		free(map);
+		return (matrix);
 	}
-	printf("check7\n");
+	else
+		return (NULL);
 }
